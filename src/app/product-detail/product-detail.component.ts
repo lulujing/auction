@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Product, ProductService, Comment } from '../shared/product.service';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-product-detail',

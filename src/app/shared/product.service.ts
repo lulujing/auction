@@ -34,13 +34,12 @@ export class ProductService  {
   }
   getProduct( id: number): Product {
     const p: Product = this.getProducts().find(item => item.id === id);
-    console.log(id + 'service id number');
-    console.log(p.title);
     return p;
   }
   getCommentsForProduct( id: number): Comment[] {
-    const  s: Comment[ ] = this.commends.filter((comment: Comment ) => comment.productId === id );
-    return s;
+    return  this.commends.filter( item => { return item.productId === id;
+    });
+
   }
   getCommentsForProductTRY(id: number): Comment {
     return this.commends[id - 1];
