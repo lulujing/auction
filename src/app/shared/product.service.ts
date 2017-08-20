@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {log} from 'util';
 
 
 @Injectable()
@@ -14,7 +15,8 @@ export class ProductService  {
     new Comment(2 , 2 , '2017-8-8:19:30' , 'Lulu' , 4 , ' Thanks'),
     new Comment(3 , 3, '2017-8-9:19:00' , 'Anna' , 3 , 'normal'),
     new Comment(4 , 4 , '2017-8-3:19:00' , 'yard' , 1, 'I do not like it'),
-    new Comment(5 , 5, '2017-8-4:19:00' , 'Jane' , 2 , 'very good')];
+    new Comment(5 , 5, '2017-8-4:19:00' , 'Jane' , 2 , 'very good'),
+    new Comment(6 , 1, '2017-8-21:19:00' , 'wang' , 2 , 'dislike')];
   constructor() { }
   getProducts( ): Product[] {
 
@@ -31,16 +33,27 @@ export class ProductService  {
       console.log(items[i]);
       copy.push(items[i]);
     }
+
   }
   getProduct( id: number): Product {
     const p: Product = this.getProducts().find(item => item.id === id);
     return p;
   }
   getCommentsForProduct( id: number): Comment[] {
-    return  this.commends.filter( item => { return item.productId === id;
-    });
-
+    console.log(id);
+    const c = [ ];
+    for (let i = 0; i < this.commends.length; i++) {
+      console.log('productid' + this.commends[i].productId );
+       const  d: boolean = this.commends[i].productId.toString() === id.toString();
+       console.log('panduan' + d);
+        if (d) {
+          console.log('if' + this.commends[i].content);
+          c.push(this.commends[i]);
+        }
+    }
+    return c;
   }
+
   getCommentsForProductTRY(id: number): Comment {
     return this.commends[id - 1];
   }
